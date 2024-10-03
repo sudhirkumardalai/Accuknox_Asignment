@@ -1,0 +1,13 @@
+To demonstrate that Django signals run inside the same database transaction as the caller. We have to follow few steps-
+
+Step-1: First we have to create a Book model as an example.
+Step-2:  The signal_update_title() function in the code is connected to the post_save signal, 
+         and it modifies the title immediately after a book is saved.This demonstrates that code inside the transaction runs before commit,
+         while the code in on_commit() runs only after a successful commit.
+
+Step-3: We force a rollback by raising an exception inside the transaction block. 
+        Both the signal's changes and the transaction will be rolled back.
+Step-4: The signal modifies the title during the transaction, 
+        while transaction.on_commit() schedules code that would execute only after a successful commit.
+
+This approach further demonstrates that Django signals run inside the same database transaction as the caller.

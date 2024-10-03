@@ -1,0 +1,10 @@
+Step1:  Create a simple model.
+Step-2: create a view that saves the model and triggers the signal.
+Step-3: Signal triggered after server runs.
+ Output:
+
+[02/Oct/2024 02:13:06] "GET /chat/ HTTP/1.1" 404 2418
+Signal received in thread: Thread-3 (process_request_thread)  this output comes in the terminal.
+This confirms that the signal handler (my_handler) runs in the same thread as the caller (create_model).
+The name of the thread printed by the signal handler will match the thread in which the HTTP request is processed,
+demonstrating that Django signals operate synchronously with the caller's thread.

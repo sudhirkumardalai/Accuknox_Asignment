@@ -1,0 +1,8 @@
+1. By default, Django signals are executed synchronously.
+2. When we send a signal, the connected receivers are executed immediately in the same thread. This means that the request or process that triggers the signal will not complete until all the receivers have finished executing.
+
+Steps to test:
+
+Step-1:  First we have to setup a signal and a receiver in django.
+Step-2:  Then trigger the signal in the view.
+Step-3:  Run the code and get the output.
